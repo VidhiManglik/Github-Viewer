@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <base href="/">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+        <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
     <script>
         var app = angular.module('app',['ui.router']);
@@ -28,6 +27,7 @@
                     gv.image=res.data.avatar_url;
                     gv.id=res.data.id;
                     gv.repos=res.data.public_repos;
+                    gv.gists=res.data.public_gists;
                 })
                 $http.get('https://api.github.com/users/' + user.name+'/repos').then(function(res1){
                     gv.repos=res1;
@@ -91,8 +91,11 @@
                         <td><input type="text" class="form-control" value="{{gv.name}}"></td>
                         <td><button class="btn btn-secondary form-control" ui-sref="details">Details</button></td>
                         <td><button class="btn btn-secondary form-control" ui-sref="repos">Repositories</button></td></tr>
-                        <div ui-view></div>
-                        
                     </tbody>
+                </table>
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
