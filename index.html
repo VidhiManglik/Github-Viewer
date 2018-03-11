@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="app">
-
 <head>
     <title>Github Viewer</title>
     <meta charset="utf-8">
@@ -10,8 +9,8 @@
     <base href="/">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-        <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
     <script>
         var app = angular.module('app',['ui.router']);
@@ -30,8 +29,11 @@
                     gv.gists=res.data.public_gists;
                 })
                 $http.get('https://api.github.com/users/' + user.name+'/repos').then(function(res1){
-                    gv.repos=res1;
+                    gv.repositories=res1;
                 })
+                $http.orderByMe=function(x){
+                    $http.myOrderBy=x;
+                }
                 
             }
             
@@ -66,8 +68,7 @@
             <br>
             <div class="col-lg-6 margin-center">
                 <div class="input-group">
-                    <label for="entername">Enter Login Name:</label>
-                    <input type="text" class="form-control" aria-label="Text input with segmented button dropdown" ng-model="user.name" name="entername">
+                    <input type="text" class="form-control" aria-label="Text input with segmented button dropdown" ng-model="user.name" placeholder="Enter Login Name">
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-secondary" ng-click="gv.fetchData(user)">Go!!</button>
                     </div>

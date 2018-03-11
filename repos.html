@@ -1,0 +1,14 @@
+<div style="background-color: #f2f2f2; margin: 5px">
+	<div class="container-fluid">
+  <h1>Repositories</h1>
+    <div><b><span ng-click="orderByMe('id')">REPOSITORY ID</span> -  
+    	<span ng-click="orderByMe('name')">REPOSITORY NAME</span></b>
+</div>
+<div ng-repeat="item in gv.repositories">
+  	<div ng-repeat="x in item | orderBy:'id' ">
+    {{x.id}}   -   {{x.name}}
+</div>
+</div>
+<
+</div>
+</div>
