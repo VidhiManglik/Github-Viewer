@@ -1,12 +1,11 @@
 var express = require('express');
 var app = express();
 
-app.get('/index/:user', function(req, res) {
-   res.send('name: ' + req.params.name);
-});
+var path = require('path');
 
-app.get('*', function(req, res){
-   res.send('Sorry, this is an invalid URL.');
+// viewed at http://localhost:8080
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.listen(3000);
